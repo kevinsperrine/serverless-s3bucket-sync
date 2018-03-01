@@ -1,43 +1,47 @@
 declare namespace Serverless {
   interface Options {
-    stage: string | null
-    region: string | null
-    noDeploy?: boolean
+    stage: string | null;
+    region: string | null;
+    noDeploy?: boolean;
   }
-  
+
   namespace Provider {
     class Aws {
-      constructor(serverless: Serverless, options: Serverless.Options)
-      
-      getProviderName: () => string
-      getRegion: () => string
-      getServerlessDeploymentBucketName: () => string
-      getStage: () => string
+      constructor(serverless: Serverless, options: Serverless.Options);
+
+      getProviderName: () => string;
+      getRegion: () => string;
+      getServerlessDeploymentBucketName: () => string;
+      getStage: () => string;
     }
   }
 }
 
 declare interface Serverless {
-  init(): Promise<any>
-  run(): Promise<any>
-  
-  setProvider(name: string, provider: Serverless.Provider.Aws): null
-  getProvider(name: string): Serverless.Provider.Aws
-  
-  getVersion(): string
-  
+  init(): Promise<any>;
+  run(): Promise<any>;
+
+  setProvider(name: string, provider: Serverless.Provider.Aws): null;
+  getProvider(name: string): Serverless.Provider.Aws;
+
+  getVersion(): string;
+
   cli: {
-    log(message: string): null
-  }
-  
+    log(message: string): null;
+  };
+
   config: {
-    servicePath: string
-  }
-  
+    servicePath: string;
+  };
+
   service: {
-    getServiceName(): string
-    getAllFunctions(): string[]
-    
-    custom: {}
-  }
+    getServiceName(): string;
+    getAllFunctions(): string[];
+
+    custom: {};
+
+    provider: {
+      profile?: string;
+    };
+  };
 }
